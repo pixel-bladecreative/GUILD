@@ -277,6 +277,6 @@ html {{ scroll-behavior: smooth; }}
 
 if __name__ == "__main__":
     build_media()
-    (OUT / "index.html").write_text(page())
+    (OUT / "index.html").write_text(page().encode("ascii", "xmlcharrefreplace").decode())
     total = sum(p.stat().st_size for p in OUT.rglob("*") if p.is_file()) / 1e6
     print(f"wrote {OUT/'index.html'}  ({len(list(MEDIA.iterdir()))} media files, {total:.1f} MB)")
