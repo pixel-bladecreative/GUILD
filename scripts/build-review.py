@@ -118,6 +118,7 @@ def page():
     body = "".join(angle_section(a, i + 1) for i, a in enumerate(angles))
     return f'''<title>Flex Payment Creative Review</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,700;0,800;0,900;1,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
