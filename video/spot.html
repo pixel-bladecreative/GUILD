@@ -98,15 +98,15 @@
       wordIn([...lines[2].querySelectorAll(".word")], b.strikeAt + 0.25, 0.1);
     } else if (b.type === "chips") {
       tl.fromTo(`${el} .vsub`, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45 }, t0 + 0.05)
-        .fromTo(`${el} .chip`, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.75 }, t0 + 1.2);
+        .fromTo(`${el} .chip`, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)", stagger: b.stagger || 0.75 }, b.at || t0 + 1.2);
     } else if (b.type === "checks") {
       tl.fromTo(`${el} .vsub`, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45 }, t0 + 0.05)
-        .fromTo(`${el} .check`, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out", stagger: 0.8 }, t0 + 1.6)
-        .fromTo(`${el} .box`, { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)", stagger: 0.8 }, t0 + 1.75);
+        .fromTo(`${el} .check`, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out", stagger: b.stagger || 0.8 }, b.at || t0 + 1.6)
+        .fromTo(`${el} .box`, { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)", stagger: b.stagger || 0.8 }, (b.at || t0 + 1.6) + 0.15);
     } else if (b.type === "route") {
       const stops = $$(`${el} .stop`), links = $$(`${el} .link`);
       stops.forEach((s, k) => {
-        const at = t0 + 0.1 + k * 1.2;
+        const at = t0 + 0.1 + k * (b.stagger || 1.2);
         if (k) tl.fromTo(links[k - 1], { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "power2.inOut" }, at - 0.4);
         tl.fromTo(s, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, at);
       });
@@ -115,7 +115,7 @@
   });
 
   // 9.0s: cyan streak leads the navy brand panel in from the left
-  const T = 9.0;
+  const T = S.brandAt || 9.0;
   tl.set("#streak", { left: "-40%", width: "40%", top: "50%", autoAlpha: 1 }, T - 0.35)
     .to("#streak", { left: "110%", duration: 0.7, ease: "power2.in" }, T - 0.35)
     .fromTo("#bp", { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.55, ease: "power3.inOut" }, T - 0.15)
@@ -124,7 +124,7 @@
   tl.set("#streak", { autoAlpha: 0 }, T + 0.4);
 
   // 12.0s: end card wipes up; logo reveals left-to-right; CTA pops
-  const E = 12.0;
+  const E = S.endAt || 12.0;
   tl.fromTo("#ec", { autoAlpha: 1, clipPath: "inset(100% 0 0 0)" }, { clipPath: "inset(0% 0 0 0)", duration: 0.55, ease: "power3.inOut" }, E - 0.2)
     .fromTo("#logo", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power2.out" }, E + 0.25)
     .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.2)" }, E + 0.9)

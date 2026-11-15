@@ -2,6 +2,7 @@
 """Retime each spot's captions to its actual voiceover and write SRT files.
 
     python3 scripts/align-captions.py [spotId ...]
+    python3 scripts/align-captions.py --srt-only   # just export SRTs from spots.json timings
 
 Detects speech segments in video/audio/vo/<spot>.(wav|mp3) with ffmpeg silencedetect,
 then distributes the caption chunks across speech time in proportion to their
@@ -58,10 +59,16 @@ def fmt(t):
 def main():
     cfg_path = ROOT / "video/spots.json"
     cfg = json.loads(cfg_path.read_text())
-    want = set(sys.argv[1:])
+    srt_only = "--srt-only" in sys.argv
+    want = set(a for a in sys.argv[1:] if not a.startswith("--"))
     (ROOT / "video/out").mkdir(parents=True, exist_ok=True)
     for spot in cfg["spots"]:
         if want and spot["id"] not in want:
+            continue
+        if srt_only:
+            srt = "\n".join(f"{i + 1}\n{fmt(a)} --> {fmt(b)}\n{t}\n" for i, (a, b, t) in enumerate(spot["captions"]))
+            (ROOT / f"video/out/{spot['id']}.srt").write_text(srt)
+            print(f"wrote video/out/{spot['id']}.srt")
             continue
         vo = next((p for p in [ROOT / f"video/audio/vo/{spot['id']}.{e}" for e in ("wav", "mp3")] if p.exists()), None)
         if not vo:

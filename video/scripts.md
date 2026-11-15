@@ -11,13 +11,13 @@ Photo: beach couple (hero)
 
 | Time | On screen | VO |
 |---|---|---|
-| 0–2s | Slow push into the couple. The yellow triangle wipes up behind them. Text: **Your home has worked hard.** | Your home has worked hard for you. |
+| 0–2s | Slow push into the couple. The yellow triangle wipes up behind them. Text: **You've worked hard for your home.** | You've worked hard for your home. |
 | 2–6s | Text: **Now let it work for you.** The cyan arrow sweeps across. | Now, it can work for you. |
 | 6–9s | Text: **Use your equity. Keep your home.** | A Flex Payment Mortgage lets you use your home equity, without selling the home you love. |
 | 9–12s | Navy panel slides in. Text: **Your mortgage, your way.** | Your mortgage, your way. |
 | 12–15s | End card. CTA: **See what you qualify for** | Guild Flex Payment. See what you qualify for. |
 
-VO (34 words): *Your home has worked hard for you. Now, it can work for you. A Flex Payment Mortgage lets you use your home equity, without selling the home you love. Your mortgage, your way. Guild Flex Payment. See what you qualify for.*
+VO (35 words): *You've worked hard for your home. Now, it can work for you. A Flex Payment Mortgage lets you use your home equity, without selling the home you love. Your mortgage, your way. Guild Flex Payment. See what you qualify for.*
 
 ---
 

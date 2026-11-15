@@ -1,7 +1,10 @@
 {
   "fps": 30,
   "duration": 15,
-  "brand_line": ["Your mortgage,", "your way."],
+  "brand_line": [
+    "Your mortgage,",
+    "your way."
+  ],
   "contact": "flexpaymentmortgage.com  ·  (877) 217-0166",
   "legal": "Guild Mortgage Company NMLS #3274. Equal Housing Opportunity. All loans subject to underwriter approval. Not from HUD or FHA.",
   "legal_payments": "Borrower must continue to pay property taxes, insurance and maintain the home.",
@@ -11,19 +14,78 @@
       "photo": "hero-beach-couple.jpg",
       "cta": "See what you qualify for",
       "beats": [
-        { "t": [0.2, 2.6], "type": "text", "lines": ["Your home has", "worked hard."], "em": 1 },
-        { "t": [2.6, 5.8], "type": "text", "lines": ["Now let it", "work for you."], "em": 1 },
-        { "t": [5.8, 9.0], "type": "text", "lines": ["Use your equity.", "Keep your home."], "em": 1 }
+        {
+          "t": [
+            0.2,
+            2.1
+          ],
+          "type": "text",
+          "lines": [
+            "You've worked hard",
+            "for your home."
+          ],
+          "em": 1
+        },
+        {
+          "t": [
+            2.1,
+            4.1
+          ],
+          "type": "text",
+          "lines": [
+            "Now let it",
+            "work for you."
+          ],
+          "em": 1
+        },
+        {
+          "t": [
+            4.1,
+            8.6
+          ],
+          "type": "text",
+          "lines": [
+            "Use your equity.",
+            "Keep your home."
+          ],
+          "em": 1
+        }
       ],
-      "vo": "Your home has worked hard for you. Now, it can work for you. A Flex Payment Mortgage lets you use your home equity, without selling the home you love. Your mortgage, your way. Guild Flex Payment. See what you qualify for.",
+      "vo": "You've worked hard for your home. Now, it can work for you. A Flex Payment Mortgage lets you use your home equity, without selling the home you love. Your mortgage, your way. Guild Flex Payment. See what you qualify for.",
       "captions": [
-        [0.3, 2.4, "Your home has worked hard for you."],
-        [2.6, 4.6, "Now, it can work for you."],
-        [4.8, 7.0, "A Flex Payment Mortgage lets you use your home equity,"],
-        [7.0, 9.0, "without selling the home you love."],
-        [9.3, 11.4, "Your mortgage, your way."],
-        [12.2, 14.6, "Guild Flex Payment. See what you qualify for."]
-      ]
+        [
+          0.3,
+          1.9,
+          "You've worked hard for your home."
+        ],
+        [
+          2.25,
+          3.8,
+          "Now, it can work for you."
+        ],
+        [
+          4.2,
+          6.75,
+          "A Flex Payment Mortgage lets you use your home equity,"
+        ],
+        [
+          6.8,
+          8.4,
+          "without selling the home you love."
+        ],
+        [
+          8.78,
+          10.35,
+          "Your mortgage, your way."
+        ],
+        [
+          10.73,
+          13.3,
+          "Guild Flex Payment. See what you qualify for."
+        ]
+      ],
+      "brandAt": 8.6,
+      "endAt": 10.55
     },
     {
       "id": "payments",
@@ -31,74 +93,301 @@
       "cta": "Calculate your options",
       "payments_disclaimer": true,
       "beats": [
-        { "t": [0.2, 4.0], "type": "strike", "pre": "What if your mortgage", "word": "payment", "post": "was gone?", "strikeAt": 2.0 },
-        { "t": [4.0, 9.0], "type": "text", "lines": ["Pay off your mortgage.", "Free up your budget."], "em": 1, "fine": true }
+        {
+          "t": [
+            0.2,
+            3.4
+          ],
+          "type": "strike",
+          "pre": "What if your mortgage",
+          "word": "payment",
+          "post": "was gone?",
+          "strikeAt": 2.0
+        },
+        {
+          "t": [
+            3.4,
+            9.35
+          ],
+          "type": "text",
+          "lines": [
+            "Pay off your mortgage.",
+            "Free up your budget."
+          ],
+          "em": 1,
+          "fine": true
+        }
       ],
       "vo": "What if your monthly mortgage payment… was gone? A Flex Payment Mortgage can pay off your existing mortgage, freeing up your budget for more of what you love. Your mortgage, your way. Calculate your options today.",
       "captions": [
-        [0.3, 2.0, "What if your monthly mortgage payment…"],
-        [2.1, 3.7, "…was gone?"],
-        [3.9, 6.6, "A Flex Payment Mortgage can pay off your existing mortgage,"],
-        [6.6, 9.0, "freeing up your budget for more of what you love."],
-        [9.3, 11.4, "Your mortgage, your way."],
-        [12.2, 14.4, "Calculate your options today."]
-      ]
+        [
+          0.3,
+          2.15,
+          "What if your monthly mortgage payment…"
+        ],
+        [
+          2.5,
+          3.2,
+          "…was gone?"
+        ],
+        [
+          3.66,
+          6.6,
+          "A Flex Payment Mortgage can pay off your existing mortgage,"
+        ],
+        [
+          6.65,
+          9.1,
+          "freeing up your budget for more of what you love."
+        ],
+        [
+          9.55,
+          11.05,
+          "Your mortgage, your way."
+        ],
+        [
+          11.45,
+          12.85,
+          "Calculate your options today."
+        ]
+      ],
+      "brandAt": 9.35,
+      "endAt": 11.2
     },
     {
       "id": "income",
       "photo": "friends-laughing.jpg",
       "cta": "Calculate your options",
       "beats": [
-        { "t": [0.2, 2.4], "type": "text", "lines": ["More room", "to live."], "em": 1 },
-        { "t": [2.4, 7.0], "type": "chips", "title": "Your equity, your choice:", "items": ["Lump sum", "Monthly payments", "Line of credit"] },
-        { "t": [7.0, 9.0], "type": "text", "lines": ["Supplement", "your income."], "em": 1 }
+        {
+          "t": [
+            0.2,
+            2.1
+          ],
+          "type": "text",
+          "lines": [
+            "More room",
+            "to live."
+          ],
+          "em": 1
+        },
+        {
+          "t": [
+            2.1,
+            7.7
+          ],
+          "type": "chips",
+          "title": "Your equity, your choice:",
+          "items": [
+            "Lump sum",
+            "Monthly payments",
+            "Line of credit"
+          ],
+          "at": 5.6,
+          "stagger": 0.65
+        },
+        {
+          "t": [
+            7.7,
+            8.8
+          ],
+          "type": "text",
+          "lines": [
+            "Supplement",
+            "your income."
+          ],
+          "em": 1
+        }
       ],
       "vo": "Want a little more room to live? A Flex Payment Mortgage turns your home equity into a lump sum, monthly payments, or a line of credit. It's your choice. Your mortgage, your way. Calculate your options with Guild.",
       "captions": [
-        [0.3, 2.3, "Want a little more room to live?"],
-        [2.5, 4.8, "A Flex Payment Mortgage turns your home equity into"],
-        [4.8, 7.0, "a lump sum, monthly payments, or a line of credit."],
-        [7.2, 8.9, "It's your choice."],
-        [9.3, 11.4, "Your mortgage, your way."],
-        [12.2, 14.4, "Calculate your options with Guild."]
-      ]
+        [
+          0.35,
+          1.8,
+          "Want a little more room to live?"
+        ],
+        [
+          2.2,
+          5.45,
+          "A Flex Payment Mortgage turns your home equity into"
+        ],
+        [
+          5.66,
+          7.5,
+          "a lump sum, monthly payments, or a line of credit."
+        ],
+        [
+          7.8,
+          8.7,
+          "It's your choice."
+        ],
+        [
+          9.0,
+          10.6,
+          "Your mortgage, your way."
+        ],
+        [
+          11.0,
+          12.6,
+          "Calculate your options with Guild."
+        ]
+      ],
+      "brandAt": 8.8,
+      "endAt": 10.8
     },
     {
       "id": "home",
       "photo": "hero-beach-couple.jpg",
       "cta": "See what you qualify for",
       "beats": [
-        { "t": [0.2, 2.4], "type": "text", "lines": ["Love", "your home?"], "em": 1 },
-        { "t": [2.4, 7.0], "type": "checks", "title": "Make it work for this chapter:", "items": ["Kitchen refresh", "Walk-in shower", "Main-floor bedroom"] },
-        { "t": [7.0, 9.0], "type": "text", "lines": ["Funded by the", "equity you've built."], "em": 1 }
+        {
+          "t": [
+            0.2,
+            1.4
+          ],
+          "type": "text",
+          "lines": [
+            "Love",
+            "your home?"
+          ],
+          "em": 1
+        },
+        {
+          "t": [
+            1.4,
+            6.85
+          ],
+          "type": "checks",
+          "title": "Make it work for this chapter:",
+          "items": [
+            "Kitchen refresh",
+            "Walk-in shower",
+            "Main-floor bedroom"
+          ],
+          "at": 3.2,
+          "stagger": 1.15
+        },
+        {
+          "t": [
+            6.85,
+            10.2
+          ],
+          "type": "text",
+          "lines": [
+            "Funded by the",
+            "equity you've built."
+          ],
+          "em": 1
+        }
       ],
       "vo": "Love your home? Make it work for this chapter: a kitchen refresh, a walk-in shower, a main-floor bedroom. A Flex Payment Mortgage can help, using the equity you've built. Your mortgage, your way. See what you qualify for.",
       "captions": [
-        [0.3, 1.8, "Love your home?"],
-        [2.0, 4.2, "Make it work for this chapter:"],
-        [4.2, 6.8, "a kitchen refresh, a walk-in shower, a main-floor bedroom."],
-        [7.0, 9.0, "A Flex Payment Mortgage can help, using the equity you've built."],
-        [9.3, 11.4, "Your mortgage, your way."],
-        [12.2, 14.2, "See what you qualify for."]
-      ]
+        [
+          0.35,
+          1.1,
+          "Love your home?"
+        ],
+        [
+          1.49,
+          2.85,
+          "Make it work for this chapter:"
+        ],
+        [
+          3.22,
+          6.5,
+          "a kitchen refresh, a walk-in shower, a main-floor bedroom."
+        ],
+        [
+          6.86,
+          10.05,
+          "A Flex Payment Mortgage can help, using the equity you've built."
+        ],
+        [
+          10.42,
+          11.95,
+          "Your mortgage, your way."
+        ],
+        [
+          12.34,
+          13.55,
+          "See what you qualify for."
+        ]
+      ],
+      "brandAt": 10.2,
+      "endAt": 12.1
     },
     {
       "id": "family",
       "photo": "family-selfie.jpg",
       "cta": "Explore your options",
       "beats": [
-        { "t": [0.2, 2.4], "type": "text", "lines": ["Closer", "to family?"], "em": 1 },
-        { "t": [2.4, 7.0], "type": "route", "items": ["Move closer.", "Right-size.", "Start fresh."] },
-        { "t": [7.0, 9.0], "type": "text", "lines": ["Flex Payment", "for Purchase"], "em": 1 }
+        {
+          "t": [
+            0.2,
+            2.0
+          ],
+          "type": "text",
+          "lines": [
+            "Closer",
+            "to family?"
+          ],
+          "em": 1
+        },
+        {
+          "t": [
+            2.0,
+            6.2
+          ],
+          "type": "route",
+          "items": [
+            "Move closer.",
+            "Right-size.",
+            "Start fresh."
+          ]
+        },
+        {
+          "t": [
+            6.2,
+            8.0
+          ],
+          "type": "text",
+          "lines": [
+            "Flex Payment",
+            "for Purchase"
+          ],
+          "em": 1
+        }
       ],
       "vo": "Miss being close to family? Flex Payment for Purchase can help you buy a home that's closer to the people you love, and better suited for you. Your mortgage, your way. Explore your options with Guild.",
       "captions": [
-        [0.3, 2.2, "Miss being close to family?"],
-        [2.4, 4.8, "Flex Payment for Purchase can help you buy a home"],
-        [4.8, 7.4, "that's closer to the people you love, and better suited for you."],
-        [9.3, 11.4, "Your mortgage, your way."],
-        [12.2, 14.4, "Explore your options with Guild."]
-      ]
+        [
+          0.36,
+          1.7,
+          "Miss being close to family?"
+        ],
+        [
+          2.16,
+          4.45,
+          "Flex Payment for Purchase can help you buy a home"
+        ],
+        [
+          4.5,
+          7.75,
+          "that's closer to the people you love, and better suited for you."
+        ],
+        [
+          8.19,
+          9.7,
+          "Your mortgage, your way."
+        ],
+        [
+          10.09,
+          11.6,
+          "Explore your options with Guild."
+        ]
+      ],
+      "brandAt": 8.0,
+      "endAt": 9.9
     }
   ]
 }

@@ -5,7 +5,7 @@ Special Ad Category: **Financial products & services**. Destination: flexpayment
 
 | Field | Copy | Chars |
 |---|---|---|
-| Primary text | Your home has worked hard for you. A Flex Payment Mortgage puts your equity to work, without selling the home you love. | 119 |
+| Primary text | You've worked hard for your home. A Flex Payment Mortgage puts your equity to work, without selling the home you love. | 118 |
 | Headline | Your mortgage, your way. | 24 |
 | Description | See what you qualify for | 24 |
 | CTA button | Learn More | |
