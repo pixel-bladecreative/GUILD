@@ -1,0 +1,169 @@
+{
+  "business_name": "Guild Flex Payment",
+  "url": "flexpaymentmortgage.com",
+  "phone": "(877) 217-0166",
+  "legal_short": "Guild Mortgage Company NMLS #3274. Equal Housing Opportunity. All loans subject to underwriter approval.",
+  "legal_payments": "Borrower must continue to pay property taxes, insurance and maintain the home.",
+  "angles": [
+    {
+      "id": "brand",
+      "name": "Your mortgage, your way",
+      "photo": "hero-beach-couple.jpg",
+      "static": {
+        "kicker": "Flex Payment Mortgage",
+        "headline": "Your mortgage, your way.",
+        "sub": "Your home is your key to financial flexibility.",
+        "cta": "See what you qualify for"
+      },
+      "meta": {
+        "primary": "Your home has worked hard for you. A Flex Payment Mortgage puts your equity to work, without selling the home you love.",
+        "headline": "Your mortgage, your way.",
+        "description": "See what you qualify for",
+        "cta_button": "Learn More"
+      },
+      "google": {
+        "headlines": [
+          "Your Mortgage, Your Way",
+          "Put Your Equity to Work",
+          "Stay in the Home You Love",
+          "Guild Flex Payment Mortgage",
+          "See What You Qualify For"
+        ],
+        "long_headline": "Your home is your key to financial flexibility. Your mortgage, your way.",
+        "descriptions": [
+          "Use your home equity without selling your home. Find out what you qualify for.",
+          "Guild's Flex Payment Mortgage specialists guide you every step of the way."
+        ]
+      },
+      "needs_payment_disclaimer": false
+    },
+    {
+      "id": "payments",
+      "name": "Payment freedom",
+      "photo": "hiking-group.jpg",
+      "static": {
+        "kicker": "Flex Payment Mortgage",
+        "headline": "Say goodbye to monthly mortgage payments.",
+        "sub": "Free up your budget for more of what you love.",
+        "cta": "See what you qualify for"
+      },
+      "meta": {
+        "primary": "What would you do without a monthly mortgage payment? A Flex Payment Mortgage can pay off your existing mortgage.",
+        "headline": "Retire your monthly mortgage payment",
+        "description": "Calculate your options",
+        "cta_button": "Learn More"
+      },
+      "google": {
+        "headlines": [
+          "No Monthly Mortgage Payment",
+          "Free Up Your Monthly Budget",
+          "Pay Off Your Mortgage",
+          "Guild Flex Payment Mortgage",
+          "Calculate Your Options"
+        ],
+        "long_headline": "Eliminate your monthly mortgage payment and free up your budget for what you love.",
+        "descriptions": [
+          "A Flex Payment Mortgage can pay off your existing mortgage. See if you qualify.",
+          "Still own your home. Taxes, insurance and upkeep apply. Talk to a specialist."
+        ]
+      },
+      "needs_payment_disclaimer": true
+    },
+    {
+      "id": "income",
+      "name": "Income boost",
+      "photo": "friends-laughing.jpg",
+      "static": {
+        "kicker": "Flex Payment Mortgage",
+        "headline": "Turn home equity into everyday flexibility.",
+        "sub": "Supplement your income, on your terms.",
+        "cta": "Calculate your options"
+      },
+      "meta": {
+        "primary": "Your home equity can do more. Use a Flex Payment Mortgage to supplement your income and enjoy the life you've built.",
+        "headline": "Put your home equity to work",
+        "description": "Calculate your options",
+        "cta_button": "Learn More"
+      },
+      "google": {
+        "headlines": [
+          "Supplement Your Income",
+          "Put Your Equity to Work",
+          "Flexibility, On Your Terms",
+          "Guild Flex Payment Mortgage",
+          "Calculate Your Options"
+        ],
+        "long_headline": "Supplement your income with your home equity, without selling your home.",
+        "descriptions": [
+          "Choose a lump sum, monthly payments or a line of credit. See what you qualify for.",
+          "Talk with a Guild Flex Payment specialist. We guide you every step of the way."
+        ]
+      },
+      "needs_payment_disclaimer": false
+    },
+    {
+      "id": "home",
+      "name": "Home upgrades",
+      "photo": "hero-beach-couple.jpg",
+      "static": {
+        "kicker": "Flex Payment Mortgage",
+        "headline": "Make the home you love work for you.",
+        "sub": "Fund home improvements with the equity you've built.",
+        "cta": "See what you qualify for"
+      },
+      "meta": {
+        "primary": "A kitchen refresh, a walk-in shower, a main-floor bedroom. A Flex Payment Mortgage can help fund upgrades that keep you home.",
+        "headline": "Fund the upgrades you've planned",
+        "description": "See what you qualify for",
+        "cta_button": "Learn More"
+      },
+      "google": {
+        "headlines": [
+          "Fund Home Improvements",
+          "Upgrade the Home You Love",
+          "Use Your Home Equity",
+          "Guild Flex Payment Mortgage",
+          "See What You Qualify For"
+        ],
+        "long_headline": "Use your home equity to make the improvements that keep you living comfortably.",
+        "descriptions": [
+          "Flex Payment Mortgages turn equity into funds for the projects that matter.",
+          "No need to sell. Talk to a Guild specialist and see what you qualify for."
+        ]
+      },
+      "needs_payment_disclaimer": false
+    },
+    {
+      "id": "family",
+      "name": "Closer to family",
+      "photo": "family-selfie.jpg",
+      "static": {
+        "kicker": "Flex Payment for Purchase",
+        "headline": "Move closer to the people you love.",
+        "sub": "Buy a home better suited for you with Flex Payment for Purchase.",
+        "cta": "Explore your options"
+      },
+      "meta": {
+        "primary": "Ready to be closer to family, or in a home that fits this chapter? Flex Payment for Purchase can help you move.",
+        "headline": "Move closer to family",
+        "description": "Explore your options",
+        "cta_button": "Learn More"
+      },
+      "google": {
+        "headlines": [
+          "Move Closer to Family",
+          "Right-Size Your Next Home",
+          "Flex Payment for Purchase",
+          "Guild Flex Payment Mortgage",
+          "Explore Your Options"
+        ],
+        "long_headline": "Buy a home better suited for this chapter, closer to the people you love.",
+        "descriptions": [
+          "Flex Payment for Purchase helps you buy your next home using equity. Learn more.",
+          "Our specialists guide you every step of the way. See what you qualify for."
+        ]
+      },
+      "needs_payment_disclaimer": false
+    }
+  ]
+}

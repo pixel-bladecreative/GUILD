@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+/tmp/
+video/frames/
+tmp/
+video/out/*.mp4
+video/audio/*.wav

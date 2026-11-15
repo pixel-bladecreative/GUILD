@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flex Payment spot</title>
+<link rel="stylesheet" href="../brand/tokens.css">
+<link rel="stylesheet" href="spot.css">
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+</head>
+<body>
+<div class="stage" id="stage"></div>
+<script>
+// Usage: spot.html?spot=brand&w=1080&h=1920[&t=3.5][&play=1]
+// Exposes window.__seek(t) for the frame renderer.
+(async () => {
+  const q = new URLSearchParams(location.search);
+  const W = +q.get("w") || 1080, H = +q.get("h") || 1920;
+  const R = document.documentElement.style;
+  R.setProperty("--w", W + "px"); R.setProperty("--h", H + "px"); R.setProperty("--u", Math.min(W, H) / 100 + "px");
+  const cfg = await (await fetch("spots.json")).json();
+  const S = cfg.spots.find(s => s.id === (q.get("spot") || "brand"));
+  const ratio = W / H, layout = ratio > 1.3 ? "wide" : ratio < 0.65 ? "tall" : "feed";
+  const stage = document.getElementById("stage");
+  stage.classList.add(layout);
+
+  const PH = { "hero-beach-couple.jpg": { pos: "20% 72%", bakedTri: true, z0: 1.25, z1: 1.45 },
+               "hiking-group.jpg": { pos: "35% 40%", z0: 1.0, z1: 1.12 },
+               "friends-laughing.jpg": { pos: "50% 40%", z0: 1.0, z1: 1.12 },
+               "family-selfie.jpg": { pos: "50% 30%", z0: 1.0, z1: 1.12 } }[S.photo];
+  const z0 = layout === "wide" ? Math.min(PH.z0, 1.05) : PH.z0, z1 = layout === "wide" ? Math.min(PH.z1, 1.18) : PH.z1;
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const words = (txt, cls = "") => `<span class="line ${cls}">${txt.split(" ").map(w => `<span class="word">${esc(w)}</span>`).join(" ")}</span>`;
+
+  const beatHTML = (b, i) => {
+    let inner = "";
+    if (b.type === "text") {
+      inner = `<div class="vh">${b.lines.map((l, k) => words(l, k === b.em ? "em" : "")).join("")}</div>`;
+      if (b.fine) inner += `<div class="fine">${esc(cfg.legal_payments)}</div>`;
+    } else if (b.type === "strike") {
+      inner = `<div class="vh"><span class="line">${b.pre.split(" ").map(w => `<span class="word">${w}</span>`).join(" ")}</span>` +
+        `<span class="line"><span class="word strikeword">${b.word}<span class="bar"></span></span><span class="word">…</span></span>` +
+        `<span class="line em post"><span class="word">${b.post.split(" ")[0]}</span> <span class="word">${b.post.split(" ").slice(1).join(" ")}</span></span></div>`;
+    } else if (b.type === "chips") {
+      inner = `<div class="vsub">${esc(b.title)}</div><div class="chips">${b.items.map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div>`;
+    } else if (b.type === "checks") {
+      inner = `<div class="vsub">${esc(b.title)}</div><div class="checks">${b.items.map(c => `<div class="check"><span class="box"></span><span>${esc(c)}</span></div>`).join("")}</div>`;
+    } else if (b.type === "route") {
+      inner = `<div class="route">${b.items.map((c, k) => (k ? `<div class="link"></div>` : "") +
+        `<div class="stop"><img src="../brand/assets/graphics/${k === b.items.length - 1 ? "House_love-yellow" : "house-yellow"}.png" alt=""><span>${esc(c)}</span></div>`).join("")}</div>`;
+    }
+    return `<div class="beat" id="beat${i}">${inner}</div>`;
+  };
+
+  const legal = cfg.legal + (S.payments_disclaimer ? " " + cfg.legal_payments : "");
+  stage.innerHTML = `
+    ${layout === "tall" ? '<div class="bottomfill"></div>' : ""}
+    <div class="photo" id="photo"><img id="pimg" src="../brand/assets/photos/${S.photo}" style="object-position:${PH.pos};transform-origin:${PH.pos}" alt=""></div>
+    ${PH.bakedTri ? "" : '<div class="tri" id="tri"></div>'}
+    <div class="textzone">${S.beats.map(beatHTML).join("")}</div>
+    <div class="brandpanel" id="bp"><div class="ptri" id="ptri"></div>
+      <div class="bl">${words(cfg.brand_line[0])}${words(cfg.brand_line[1], "y")}</div></div>
+    <div class="streak" id="streak"></div>
+    <div class="endcard" id="ec"><div class="etri" id="etri"></div>
+      <img class="logo" id="logo" src="../brand/assets/logo-guild-flex-payment.png" alt="Guild Mortgage Flex Payment">
+      <div class="cta" id="cta">${esc(S.cta)}<span class="chev"></span></div>
+      <div class="contact" id="contact">${esc(cfg.contact)}</div>
+      <div class="legal" id="legal">${esc(legal)}</div></div>
+    <div class="caption" id="cap"></div>`;
+
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => (i.onload = i.onerror = r))));
+
+  // ---------- Timeline ----------
+  const tl = gsap.timeline({ paused: true });
+  const $ = s => stage.querySelector(s), $$ = s => [...stage.querySelectorAll(s)];
+  gsap.set(["#bp", "#ec"], { autoAlpha: 0 });
+  gsap.set(".beat", { autoAlpha: 0 });
+  gsap.set("#streak", { autoAlpha: 0, left: "-40%", width: "40%", top: "50%" });
+
+  // Photo: fade/scale in, then slow push (Ken Burns) through 9s
+  tl.fromTo("#pimg", { scale: z0 * 1.04, opacity: 0 }, { scale: z0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0)
+    .to("#pimg", { scale: z1, duration: 8.6, ease: "none" }, 0.6);
+  if ($("#tri")) tl.fromTo("#tri", { scaleY: 0 }, { scaleY: 1, duration: 0.7, ease: "back.out(1.6)" }, 0.25);
+
+  const wordIn = (els, at, stagger = 0.06) => tl.fromTo(els, { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power3.out", stagger }, at);
+
+  S.beats.forEach((b, i) => {
+    const el = `#beat${i}`, [t0, t1] = b.t;
+    tl.set(el, { autoAlpha: 1 }, t0);
+    if (b.type === "text") {
+      wordIn($$(`${el} .word`), t0 + 0.05);
+      if (b.fine) tl.fromTo(`${el} .fine`, { opacity: 0 }, { opacity: 1, duration: 0.4 }, t0 + 0.6);
+    } else if (b.type === "strike") {
+      const lines = $$(`${el} .line`);
+      wordIn([...lines[0].querySelectorAll(".word"), ...lines[1].querySelectorAll(".word")], t0 + 0.05);
+      tl.to(`${el} .bar`, { scaleX: 1, duration: 0.45, ease: "power2.inOut" }, b.strikeAt)
+        .to(`${el} .strikeword`, { opacity: 0.45, duration: 0.3 }, b.strikeAt + 0.3);
+      wordIn([...lines[2].querySelectorAll(".word")], b.strikeAt + 0.25, 0.1);
+    } else if (b.type === "chips") {
+      tl.fromTo(`${el} .vsub`, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45 }, t0 + 0.05)
+        .fromTo(`${el} .chip`, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.75 }, t0 + 1.2);
+    } else if (b.type === "checks") {
+      tl.fromTo(`${el} .vsub`, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45 }, t0 + 0.05)
+        .fromTo(`${el} .check`, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out", stagger: 0.8 }, t0 + 1.6)
+        .fromTo(`${el} .box`, { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)", stagger: 0.8 }, t0 + 1.75);
+    } else if (b.type === "route") {
+      const stops = $$(`${el} .stop`), links = $$(`${el} .link`);
+      stops.forEach((s, k) => {
+        const at = t0 + 0.1 + k * 1.2;
+        if (k) tl.fromTo(links[k - 1], { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "power2.inOut" }, at - 0.4);
+        tl.fromTo(s, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, at);
+      });
+    }
+    if (i < S.beats.length - 1) tl.to(el, { autoAlpha: 0, y: -16, duration: 0.3, ease: "power2.in" }, t1 - 0.3);
+  });
+
+  // 9.0s: cyan streak leads the navy brand panel in from the left
+  const T = 9.0;
+  tl.set("#streak", { left: "-40%", width: "40%", top: "50%", autoAlpha: 1 }, T - 0.35)
+    .to("#streak", { left: "110%", duration: 0.7, ease: "power2.in" }, T - 0.35)
+    .fromTo("#bp", { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.55, ease: "power3.inOut" }, T - 0.15)
+    .fromTo("#ptri", { scaleY: 0 }, { scaleY: 1, duration: 0.7, ease: "back.out(1.4)" }, T + 0.3);
+  wordIn($$("#bp .word"), T + 0.25, 0.09);
+  tl.set("#streak", { autoAlpha: 0 }, T + 0.4);
+
+  // 12.0s: end card wipes up; logo reveals left-to-right; CTA pops
+  const E = 12.0;
+  tl.fromTo("#ec", { autoAlpha: 1, clipPath: "inset(100% 0 0 0)" }, { clipPath: "inset(0% 0 0 0)", duration: 0.55, ease: "power3.inOut" }, E - 0.2)
+    .fromTo("#logo", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power2.out" }, E + 0.25)
+    .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.2)" }, E + 0.9)
+    .fromTo(["#contact", "#legal"], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.12 }, E + 1.2)
+    .fromTo("#etri", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.6, ease: "back.out(1.5)" }, E + 0.4)
+    .to("#cta", { scale: 1.05, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, E + 2.2);
+  tl.to({}, { duration: 0 }, cfg.duration);
+
+  // Captions: computed per frame so seeking is deterministic
+  const cap = $("#cap");
+  const showCaps = q.get("captions") !== "0";
+  function captionAt(t) {
+    if (!showCaps) { cap.style.opacity = 0; return; }
+    const c = S.captions.find(([a, b]) => t >= a && t < b);
+    if (!c) { cap.style.opacity = 0; return; }
+    if (cap.textContent !== c[2]) cap.textContent = c[2];
+    cap.style.opacity = Math.min(1, (t - c[0]) / 0.12, (c[1] - t) / 0.12);
+  }
+  window.__seek = t => { tl.seek(t, true); captionAt(t); };
+  window.__duration = cfg.duration;
+  window.__fps = cfg.fps;
+  window.__seek(+q.get("t") || 0);
+  if (q.get("play")) { const t0 = performance.now(); (function f() { const t = ((performance.now() - t0) / 1000) % cfg.duration; window.__seek(t); requestAnimationFrame(f); })(); }
+  document.body.dataset.ready = "1";
+})();
+</script>
+</body>
+</html>

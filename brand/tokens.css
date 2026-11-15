@@ -1,0 +1,25 @@
+/* Flex Payment Mortgage: shared brand tokens for static + video templates */
+@font-face {
+  font-family: "Figtree";
+  src: url("fonts/Figtree-Variable.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Figtree";
+  src: url("fonts/Figtree-Italic-Variable.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+}
+
+:root {
+  --navy: #262a82;
+  --navy-deep: #1b1e63;
+  --yellow: #ffdf00;
+  --cyan: #00b5ef;
+  --purple: #953192;
+  --ink: #4a494a;
+  --mist: #f7f7f7;
+  --white: #ffffff;
+  --font: "Figtree", "Circular Std", Verdana, sans-serif;
+}

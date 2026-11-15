@@ -1,0 +1,13 @@
+{
+  "name": "guild-flex-payment-creative",
+  "private": true,
+  "description": "Flex Payment Mortgage ad creative: static ads + motion-graphics video",
+  "scripts": {
+    "copy": "python3 scripts/build_copy.py",
+    "static": "node scripts/render-static.js",
+    "video": "node scripts/render-video.js"
+  },
+  "dependencies": {
+    "gsap": "3.12.5"
+  }
+}
