@@ -32,8 +32,20 @@ node scripts/render-video.js all all --stills   # quick contact-sheet frames to 
 node scripts/render-video.js all all            # 15 MP4s (5 spots x 9:16, 4:5, 16:9), silent
 ```
 
+### Audio
+
+Music bed: SunoBoard "Open Doors" take A (`video/audio/src/music_a.mp3`), from 0–15s; it lifts at about 9.5s to meet the brand panel. Voiceover: ElevenLabs "Justin Case" on `eleven_v4`. Save the chosen takes as `video/audio/vo/<spot>.mp3`.
+
 ```bash
-node scripts/render-video.js all all --audio    # mux video/audio/<spot>.mix.wav when present
+scripts/mix-audio.sh                    # duck music under VO, -14 LUFS, remux onto video/out/*.mp4 (no re-render)
+```
+
+```bash
+python3 scripts/align-captions.py       # retime captions in spots.json to the real VO and write video/out/<spot>.srt
+```
+
+```bash
+node scripts/render-video.js all all && scripts/mix-audio.sh   # re-render with the new caption timing, then remux audio
 ```
 
 To preview a spot live in a browser, serve the repo root and open `video/spot.html?spot=brand&w=1080&h=1920&play=1`.
@@ -47,4 +59,4 @@ To preview a spot live in a browser, serve the repo root and open `video/spot.ht
 
 - The Guild font (Circular Std) isn't licensed here; Figtree substitutes for it.
 - Site photos: check the usage license. Only the hero is high-resolution.
-- Voiceover and music are pending script approval (`video/scripts.md`).
+- Voiceover is blocked: the ElevenLabs account has a failed or incomplete payment. Videos currently carry the music bed only.

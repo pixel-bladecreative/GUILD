@@ -5,3 +5,4 @@ video/frames/
 tmp/
 video/out/*.mp4
 video/audio/*.wav
+video/audio/src/music_b.mp3
