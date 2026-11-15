@@ -85,7 +85,22 @@
         ]
       ],
       "brandAt": 8.6,
-      "endAt": 10.55
+      "endAt": 10.55,
+      "footage": {
+        "dir": "footage/frames/brand",
+        "count": 268,
+        "fps": 30,
+        "pos": "38% 62%",
+        "z0": 1.0,
+        "z1": 1.06,
+        "source": "video/footage/beach_veo_1080p.mp4 (Veo 3.1 fast image-to-video from brand/assets/photos/hero-beach-couple.jpg), slowed 1.14x",
+        "posWide": "18% 60%",
+        "z1Wide": 1.0,
+        "panWide": [
+          "0% 60%",
+          "36% 60%"
+        ]
+      }
     },
     {
       "id": "payments",

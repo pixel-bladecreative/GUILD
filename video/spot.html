@@ -27,7 +27,10 @@
                "hiking-group.jpg": { pos: "35% 40%", z0: 1.0, z1: 1.12 },
                "friends-laughing.jpg": { pos: "50% 40%", z0: 1.0, z1: 1.12 },
                "family-selfie.jpg": { pos: "50% 30%", z0: 1.0, z1: 1.12 } }[S.photo];
+  const FT = S.footage;  // optional AI footage: { dir, count, fps, pos, z0, z1 }
+  if (FT) Object.assign(PH, { pos: (layout === "wide" && FT.posWide) || FT.pos || "50% 50%", z0: FT.z0 || 1.0, z1: (layout === "wide" && FT.z1Wide) || FT.z1 || 1.05 });
   const z0 = layout === "wide" ? Math.min(PH.z0, 1.05) : PH.z0, z1 = layout === "wide" ? Math.min(PH.z1, 1.18) : PH.z1;
+  const frameSrc = i => `${FT.dir}/f_${String(i).padStart(4, "0")}.jpg`;
   const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
   const words = (txt, cls = "") => `<span class="line ${cls}">${txt.split(" ").map(w => `<span class="word">${esc(w)}</span>`).join(" ")}</span>`;
 
@@ -54,7 +57,7 @@
   const legal = cfg.legal + (S.payments_disclaimer ? " " + cfg.legal_payments : "");
   stage.innerHTML = `
     ${layout === "tall" ? '<div class="bottomfill"></div>' : ""}
-    <div class="photo" id="photo"><img id="pimg" src="../brand/assets/photos/${S.photo}" style="object-position:${PH.pos};transform-origin:${PH.pos}" alt=""></div>
+    <div class="photo" id="photo"><img id="pimg" src="${FT ? frameSrc(1) : "../brand/assets/photos/" + S.photo}" style="object-position:${PH.pos};transform-origin:${PH.pos}" alt=""></div>
     ${PH.bakedTri ? "" : '<div class="tri" id="tri"></div>'}
     <div class="textzone">${S.beats.map(beatHTML).join("")}</div>
     <div class="brandpanel" id="bp"><div class="ptri" id="ptri"></div>
@@ -80,6 +83,9 @@
   // Photo: fade/scale in, then slow push (Ken Burns) through 9s
   tl.fromTo("#pimg", { scale: z0 * 1.04, opacity: 0 }, { scale: z0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0)
     .to("#pimg", { scale: z1, duration: 8.6, ease: "none" }, 0.6);
+  // Footage framing can pan over time to follow the subjects (e.g. FT.panWide: ["2% 60%", "34% 60%"])
+  const pan = FT && (layout === "wide" ? FT.panWide : FT.pan);
+  if (pan) tl.fromTo("#pimg", { objectPosition: pan[0] }, { objectPosition: pan[1], duration: FT.count / FT.fps, ease: "sine.inOut" }, 0);
   if ($("#tri")) tl.fromTo("#tri", { scaleY: 0 }, { scaleY: 1, duration: 0.7, ease: "back.out(1.6)" }, 0.25);
 
   const wordIn = (els, at, stagger = 0.06) => tl.fromTo(els, { yPercent: 115 }, { yPercent: 0, duration: 0.55, ease: "power3.out", stagger }, at);
@@ -143,7 +149,15 @@
     if (cap.textContent !== c[2]) cap.textContent = c[2];
     cap.style.opacity = Math.min(1, (t - c[0]) / 0.12, (c[1] - t) / 0.12);
   }
-  window.__seek = t => { tl.seek(t, true); captionAt(t); };
+  // With footage, swap the photo to the matching frame and wait for it to decode before resolving
+  const pimg = $("#pimg");
+  async function footageAt(t) {
+    if (!FT) return;
+    const i = Math.min(FT.count, Math.max(1, Math.floor(t * FT.fps) + 1));
+    const src = frameSrc(i);
+    if (pimg.getAttribute("src") !== src) { pimg.setAttribute("src", src); try { await pimg.decode(); } catch (e) {} }
+  }
+  window.__seek = async t => { tl.seek(t, true); captionAt(t); await footageAt(t); };
   window.__duration = cfg.duration;
   window.__fps = cfg.fps;
   window.__seek(+q.get("t") || 0);
